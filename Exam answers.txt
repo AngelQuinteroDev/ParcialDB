@@ -1,0 +1,50 @@
+NoSQL Exam Answers
+
+name: Ángel Quintero
+
+
+1. The posts are stored under each user because it makes it easier to control user interactions regarding posts and communities.
+
+   It is very inefficient due to the amount of subcollections and information it must analyze.
+
+
+
+4. This query fails because there is no index that it needs to be performed.
+
+The required composite index is the one designed to run the query with the needed filters-
+
+
+    where("type", "==", "academic"),
+    where("likes", ">", 50),
+    orderBy("publishedAt", "desc") 
+
+
+Campos	Pedido	Estado 
+type
+publishedAt
+likes
+__name__
+Ascendente
+Descendente
+Descendente
+Descendente
+Debe crearse
+
+
+Yes, the index can be reused for queries that have filters like the following:
+
+    where("type", "==", "academic"),
+    where("likes", ">", 100),
+    orderBy("publishedAt", "desc") 
+
+
+    where("type", "==", "academic"),
+    orderBy("publishedAt", "desc") 
+
+
+
+5. Since we have not added any field data to the user it executes and does not show the leaderboard.
+
+
+
+6.Create a subcollection between community and posts, in which the publications with the most participation, likes, impressions, views, etc. will be saved, allowing many users of the same community to be recommended or to have that publication appear.
